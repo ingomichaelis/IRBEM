@@ -37,13 +37,10 @@ C
        RETURN
        END
 
-       SUBROUTINE find_bm_nalpha(xx0,nalp,alpha,Bposit,Bmir,xmin)
+       SUBROUTINE find_bm_nalpha(xx0,alpha,Bposit,Bmir,xmin)
 C
        IMPLICIT NONE
        INCLUDE 'variables.inc'
-C
-       INTEGER*4  Nreb
-       PARAMETER (Nreb = 50)
 C
        INTEGER*4  k_ext,k_l,kint,Ifail
        INTEGER*4  Nrebmax
@@ -53,7 +50,7 @@ C
        REAL*8     B(3),Bl,B0,B1,B3
        REAL*8     dsreb
 
-       INTEGER*4  I,J,ind,ii,nalp
+       INTEGER*4  I,J,ind,ii
        REAL*8     Lb,sn
        REAL*8     leI0
 C
@@ -68,7 +65,7 @@ C
        common /rconst/rad,pi
 C
 C
-       Nrebmax = 20*Nreb
+       Nrebmax = 20*Nreb_def
 C
        leI0 = 0.D0
 C
@@ -106,7 +103,7 @@ C
        sn2=sn*sn
        Sn2max=sn2
        cste=B0/sn2
-       dsreb = Lb/(Nreb*1.d0)
+       dsreb = Lb/(Nreb_def*1.d0)
 C
 C calcul du sens du depart
 C

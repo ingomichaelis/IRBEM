@@ -170,8 +170,9 @@ c
         INCLUDE 'ntime_max.inc'
 C
 c declare inputs
-        INTEGER*4    kext,k_ext,k_l,options(5),Nalp,Nipa
-      PARAMETER (Nalp=25)
+        INTEGER*4    kext,k_ext,k_l,options(5),Nipa
+c        INTEGER*4    kext,k_ext,k_l,options(5),Nalp,Nipa
+c      PARAMETER (Nalp=25)
         INTEGER*4    ntime,sysaxes
       INTEGER*4    iyearsat(ntime_max)
       integer*4    idoy(ntime_max)
@@ -1683,8 +1684,9 @@ c
       INCLUDE 'variables.inc'
 C
 c declare inputs
-        INTEGER*4    kext,k_ext,k_l,options(5),Nalp,Nipa
-      PARAMETER (Nalp=25)
+        INTEGER*4    kext,k_ext,k_l,options(5),Nipa
+c        INTEGER*4    kext,k_ext,k_l,options(5),Nalp,Nipa
+c      PARAMETER (Nalp=25)
         INTEGER*4    sysaxes
       INTEGER*4    iyearsat
       integer*4    idoy

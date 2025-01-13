@@ -17,4 +17,8 @@
 !    along with IRBEM-LIB.  If not, see <http://www.gnu.org/licenses/>.
 !
 	REAL*8     baddata
+	INTEGER*4  Nalp,Nreb_def,Nder_def,Ntet_def
 	PARAMETER  (baddata=-1.d31)
+!	PARAMETER (Nreb_def = 50, Nder_def = 25, Ntet_def = 720)
+	PARAMETER (Nreb_def = 50, Nder_def = 25, Ntet_def = 1440)
+	PARAMETER (Nalp=25)

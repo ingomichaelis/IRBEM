@@ -20529,8 +20529,7 @@ c
       INCLUDE 'ntime_max.inc'
 c
 c declare inputs
-      INTEGER*4    kext,k_ext,k_l,options(5),Nalp,Nipa
-      PARAMETER (Nalp=25)
+      INTEGER*4    kext,k_ext,k_l,options(5),Nipa
       INTEGER*4    ntime,sysaxes
       INTEGER*4    iyearsat(ntime_max)
       integer*4    idoy(ntime_max)
@@ -20551,7 +20550,6 @@ c                     10: G3
 c
 c Declare internal variables
       INTEGER*4  option1,isat,IPA,ntime_tmp,sysaxesOUT,sysaxesIN
-      REAL*8     alti, lati, longi
       REAL*8     BLOCAL_tmp(ntime_max),BMIN_tmp(ntime_max)
       REAL*8     XJ_tmp(ntime_max),MLT_tmp(ntime_max)
       REAL*8     Lm_tmp(ntime_max),Lstar_tmp(ntime_max)
@@ -20587,9 +20585,6 @@ c Compute Bmin at all locations first.
            DO IPA=1,Nipa
               options(1)=0
               if (alpha(IPA).ne.90.0d0) then
-                 call get_coordinates ( sysaxes,
-     &        xIN1(isat), xIN2(isat), xIN3(isat),
-     &        alti, lati, longi, xIN )
                  CALL find_bm_nalpha(xIN,1,alpha(IPA),BL,
      &                BMIR,xGEO)
                  call make_lstar1(ntime_tmp,kext,options,sysaxesIN,

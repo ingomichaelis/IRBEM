@@ -45,9 +45,6 @@ C
        IMPLICIT NONE
        INCLUDE 'variables.inc'
 C
-       INTEGER*4  Nreb_def,Nder_def,Ntet_def
-       PARAMETER (Nreb_def = 50, Nder_def = 25, Ntet_def = 720)
-C
        INTEGER*4  Nder,Nreb,Ntet
        INTEGER*4  k_ext,k_l,kint,n_resol,t_resol,r_resol
        INTEGER*4  Nrebmax

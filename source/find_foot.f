@@ -164,9 +164,6 @@ c      REAL*8 BFOOTMAG - Magnetic field at foot point (nT)
        IMPLICIT NONE
        INCLUDE 'variables.inc'
 C
-       INTEGER*4  Nreb
-       PARAMETER (Nreb = 50)
-C
        INTEGER*4  Ifail
        REAL*8     rr,tt
        REAL*8     xx0(3),xx(3),x1(3),x2(3)
@@ -209,7 +206,7 @@ C
        BFOOT(3) = baddata
        BFOOTMAG = baddata
 
-       dsreb = Lb/(Nreb*1.d0) ! step size
+       dsreb = Lb/(Nreb_def*1.d0) ! step size
 
         ! introduced to prevent overshooting
         ! where one may end up in the opposite hemisphere
