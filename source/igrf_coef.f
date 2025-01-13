@@ -70,7 +70,6 @@ C
        REAL*8 G2015(66), H2015(66)
        REAL*8 G2020(66), H2020(66)
        REAL*8 G2025(66), H2025(66)
-       REAL*8 G2030(66), H2030(66)
        REAL*8 DG2030(45), DH2030(45)
 C
        INTEGER*4 N,ierr
@@ -1190,8 +1189,8 @@ C
          DT = 10.D0 ! effectively  2040
        endif
        DO 40 N=1,66
-         G(N)=G2030(N)
-         H(N)=H2030(N)
+         G(N)=DG2030(N)
+         H(N)=DH2030(N)
          IF (N.GT.45) GOTO 40
          G(N)=G(N)+DG2030(N)*DT
          H(N)=H(N)+DH2030(N)*DT
@@ -1483,8 +1482,8 @@ C
 2030   F2=(year-2025.D0)/5.D0
        F1=1.D0-F2
        DO N=1,66
-         G(N)=G2025(N)*F1+G2030(N)*F2
-         H(N)=H2025(N)*F1+H2030(N)*F2
+         G(N)=G2025(N)*F1+DG2030(N)*F2
+         H(N)=H2025(N)*F1+DH2030(N)*F2
        enddo
        GOTO 300
 C
