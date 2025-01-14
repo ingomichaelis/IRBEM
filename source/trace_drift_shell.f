@@ -22,16 +22,15 @@ C
      &         lati,longi,alti,Lm,Lstar,leI0,Bposit,Bmin,posit,Nposit)
 C
        IMPLICIT NONE
+       INCLUDE 'variables.inc'
        REAL*8     xx0(3)
        REAL*8     lati,longi,alti
        REAL*8     Bmin
-       INTEGER*4  Nreb,Nder,Ntet
-       PARAMETER (Nreb = 50, Nder = 48, Ntet = 720)
 C
-       INTEGER*4  Nposit(Nder)
+       INTEGER*4  Nposit(Nder_def)
        REAL*8     Lm,Lstar,Lb
        REAL*8     leI0
-       REAL*8     posit(3,20*Nreb,Nder),Bposit(20*Nreb,Nder)
+       REAL*8     posit(3,20*Nreb_def,Nder_def),Bposit(20*Nreb_def,Nder_def)
 C
        CALL GDZ_GEO(lati,longi,alti,xx0(1),xx0(2),xx0(3))
 C
@@ -47,9 +46,6 @@ C
        IMPLICIT NONE
        INCLUDE 'variables.inc'
 C
-       INTEGER*4  Nreb,Nder,Ntet
-       PARAMETER (Nreb = 50, Nder = 48, Ntet = 720)
-C
        INTEGER*4  k_ext,k_l,kint
        INTEGER*4  Nrebmax
        REAL*8     rr,rr2
@@ -60,20 +56,20 @@ C
        REAL*8     dsreb,smin
 
        INTEGER*4  I,J,Iflag,Iflag_I,Ilflag,ind,II,Ifail
-       INTEGER*4  Nposit(Nder)
+       INTEGER*4  Nposit(Nder_def)
        REAL*8     Lm,Lstar,Lb
        REAL*8     leI,leI0,leI1
        REAL*8     XY,YY
        REAL*8     aa,bb
 C
        REAL*8     tt
-       REAL*8     tet(Nder),phi(Nder)
+       REAL*8     tet(Nder_def),phi(Nder_def)
        REAL*8     tetl,tet1,dtet
        REAL*8     somme,BrR2
 C
        REAL*8     Bo,xc,yc,zc,ct,st,cp,sp
 C
-       REAL*8     posit(3,20*Nreb,Nder),Bposit(20*Nreb,Nder)
+       REAL*8     posit(3,20*Nreb_def,Nder_def),Bposit(20*Nreb_def,Nder_def)
 C
        COMMON /dipigrf/Bo,xc,yc,zc,ct,st,cp,sp
        COMMON /calotte2/tet
@@ -83,9 +79,9 @@ C
        common /rconst/rad,pi
 C
 C
-       dtet = pi/Ntet
+       dtet = pi/Ntet_def
 C
-       Nrebmax = 20*Nreb
+       Nrebmax = 20*Nreb_def
 C
        Lm = baddata
        Lstar = baddata
@@ -106,7 +102,7 @@ C
        ENDIF
        Bmin = B0
 C
-       dsreb = Lb/Nreb
+       dsreb = Lb/Nreb_def
 C
 C calcul du sens du depart
 C
@@ -307,8 +303,8 @@ C et on tourne -> on se decale sur la surface en phi et on cherche teta
 C pour avoir leI0 et B0 constants
 C
        dsreb = -dsreb
-       DO I = 2,Nder
-        phi(I) = phi(I-1)+2.D0*pi/Nder
+       DO I = 2,Nder_def
+        phi(I) = phi(I-1)+2.D0*pi/Nder_def
         Iflag_I = 0
 c	write(6,*)tet(I)
 	IF (Ilflag.EQ.0) THEN
@@ -451,7 +447,7 @@ c
 	 RETURN
 	ENDIF
        ENDDO
-c       write(6,*)(tet(I),I=1,Nder)
+c       write(6,*)(tet(I),I=1,Nder_def)
 c       read(5,*)
 C
 C calcul de somme de BdS sur la calotte nord
@@ -466,9 +462,9 @@ C
        ENDIF
        BrR2 = abs((x1(1)*B(1)+x1(2)*B(2)+x1(3)*B(3))) ! phi integrates B dot dA, or Br*R^2dphi*dtheta, R=1
        somme = BrR2*pi*dtet*dtet/4.D0
-       DO I = 1,Nder
+       DO I = 1,Nder_def
          tetl = 0.D0
-         DO J = 1,Ntet
+         DO J = 1,Ntet_def
 	  tetl = tetl+dtet
 	  IF (tetl .GT. tet(I)) GOTO 111
           x1(1) = SIN(tetl)*COS(phi(I))
@@ -480,7 +476,7 @@ C
 	     RETURN
           ENDIF
           BrR2 = abs((x1(1)*B(1)+x1(2)*B(2)+x1(3)*B(3))) ! phi integrates B dot dA, or Br*R^2dphi*dtheta, R=1
-	  somme = somme+BrR2*SIN(tetl)*dtet*2.D0*pi/Nder
+	  somme = somme+BrR2*SIN(tetl)*dtet*2.D0*pi/Nder_def
 	 ENDDO
 111      CONTINUE
        ENDDO

@@ -161,10 +161,6 @@ C
       IMPLICIT NONE
       INCLUDE 'variables.inc'
       
-C     Parameters
-      INTEGER*4  Nreb_def,Nder_def,Ntet_def
-      PARAMETER (Nreb_def = 50, Nder_def = 25, Ntet_def = 720)
-      
 C     Input Variables
       INTEGER*4 t_resol,r_resol
       REAL*8     lati,longi,alti,R0
@@ -191,10 +187,6 @@ C
 C     
       IMPLICIT NONE
       INCLUDE 'variables.inc'
-      
-C     Parameters
-      INTEGER*4  Nreb_def,Nder_def,Ntet_def
-      PARAMETER (Nreb_def = 50, Nder_def = 25, Ntet_def = 720)
       
 C     Input Variables
       INTEGER*4 t_resol,r_resol
